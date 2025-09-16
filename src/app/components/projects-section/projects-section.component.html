@@ -1,0 +1,172 @@
+<div class="projects-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-text">Featured Projects</span>
+        <span class="title-accent">Portfolio</span>
+      </h2>
+      <p class="section-description">
+        Explore my latest projects showcasing full-stack development skills and innovative solutions.
+      </p>
+    </div>
+
+    <div class="projects-content">
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <button 
+          *ngFor="let category of projectCategories" 
+          class="filter-btn"
+          [class.active]="activeCategory === category"
+          (click)="filterProjects(category)">
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" #projectsContainer>
+        <div 
+          *ngFor="let project of getFilteredProjects(); let i = index" 
+          class="project-card"
+          [class.featured]="project.featured"
+          [style.animation-delay]="i * 0.2 + 's'"
+          (click)="selectProject(project)"
+          [class.selected]="selectedProject === project">
+          
+          <!-- Project Image -->
+          <div class="project-image">
+            <div class="image-placeholder">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <button class="view-btn" (click)="openProject(project.githubUrl)">
+                  <i class="fab fa-github"></i>
+                  View Code
+                </button>
+                <button class="view-btn" *ngIf="project.liveUrl" (click)="openProject(project.liveUrl)">
+                  <i class="fas fa-external-link-alt"></i>
+                  Live Demo
+                </button>
+              </div>
+            </div>
+            <div class="project-badge" *ngIf="project.featured">
+              <i class="fas fa-star"></i>
+              Featured
+            </div>
+          </div>
+
+          <!-- Project Info -->
+          <div class="project-info">
+            <div class="project-header">
+              <h3 class="project-title">{{ project.title }}</h3>
+              <span class="project-date">{{ project.date }}</span>
+            </div>
+            
+            <p class="project-description">{{ project.description }}</p>
+            
+            <div class="project-technologies">
+              <span 
+                *ngFor="let tech of project.technologies" 
+                class="tech-tag">
+                {{ tech }}
+              </span>
+            </div>
+
+            <div class="project-category">
+              <i class="fas fa-tag"></i>
+              {{ project.category }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Project Details -->
+      <div class="project-details" *ngIf="selectedProject">
+        <div class="project-detail-card">
+          <div class="detail-header">
+            <div class="detail-image">
+              <div class="image-placeholder">
+                <i class="fas fa-code"></i>
+              </div>
+            </div>
+            <div class="detail-info">
+              <h3>{{ selectedProject.title }}</h3>
+              <p class="project-category">{{ selectedProject.category }} • {{ selectedProject.date }}</p>
+              <div class="project-links">
+                <button class="link-btn primary" (click)="openProject(selectedProject.githubUrl)">
+                  <i class="fab fa-github"></i>
+                  GitHub
+                </button>
+                <button class="link-btn secondary" *ngIf="selectedProject.liveUrl" (click)="openProject(selectedProject.liveUrl)">
+                  <i class="fas fa-external-link-alt"></i>
+                  Live Demo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-content">
+            <div class="project-description-full">
+              <h4>Project Overview</h4>
+              <p>{{ selectedProject.longDescription }}</p>
+            </div>
+
+            <div class="project-technologies-full">
+              <h4>Technologies Used</h4>
+              <div class="tech-grid">
+                <span 
+                  *ngFor="let tech of selectedProject.technologies" 
+                  class="tech-item">
+                  <i class="fas fa-check"></i>
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+
+            <div class="project-features">
+              <h4>Key Features</h4>
+              <ul>
+                <li *ngIf="selectedProject.title === 'SmartBank'">
+                  <i class="fas fa-shield-alt"></i>
+                  Role-based access control with Spring Security
+                </li>
+                <li *ngIf="selectedProject.title === 'SmartBank'">
+                  <i class="fas fa-credit-card"></i>
+                  Secure transaction processing and account management
+                </li>
+                <li *ngIf="selectedProject.title === 'SmartBank'">
+                  <i class="fas fa-chart-line"></i>
+                  Real-time financial reporting and analytics
+                </li>
+                <li *ngIf="selectedProject.title === 'Spring Boot Payment Gateway'">
+                  <i class="fas fa-credit-card"></i>
+                  Multiple payment methods with Razorpay integration
+                </li>
+                <li *ngIf="selectedProject.title === 'Spring Boot Payment Gateway'">
+                  <i class="fas fa-user-shield"></i>
+                  Google OAuth2 authentication and authorization
+                </li>
+                <li *ngIf="selectedProject.title === 'Spring Boot Payment Gateway'">
+                  <i class="fas fa-chart-bar"></i>
+                  Comprehensive transaction tracking and reporting
+                </li>
+                <li *ngIf="selectedProject.title === 'HealthBridge'">
+                  <i class="fas fa-user-md"></i>
+                  Doctor listing and appointment scheduling system
+                </li>
+                <li *ngIf="selectedProject.title === 'HealthBridge'">
+                  <i class="fas fa-pills"></i>
+                  Medicine search and health article repository
+                </li>
+                <li *ngIf="selectedProject.title === 'HealthBridge'">
+                  <i class="fas fa-mobile-alt"></i>
+                  Responsive design for all devices
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo -->
+      <div class="logo">
+        <span class="logo-text">GK</span>
+        <div class="logo-glow"></div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <a (click)="scrollToSection('home')" class="nav-link">Home</a>
+        <a (click)="scrollToSection('about')" class="nav-link">About</a>
+        <a (click)="scrollToSection('skills')" class="nav-link">Skills</a>
+        <a (click)="scrollToSection('projects')" class="nav-link">Projects</a>
+        <a (click)="scrollToSection('education')" class="nav-link">Education</a>
+        <a (click)="scrollToSection('contact')" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</header>

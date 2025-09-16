@@ -1,0 +1,98 @@
+<div class="about-section">
+  <div class="container">
+    <div class="about-content" #aboutContainer>
+      <!-- Section Header -->
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-text">About Me</span>
+          <span class="title-accent">Journey</span>
+        </h2>
+        <p class="section-description">
+          Discover my passion for technology and the journey that led me to become a Java Full Stack Developer.
+        </p>
+      </div>
+
+      <div class="about-main">
+        <!-- Left Column - Profile & Stats -->
+        <div class="about-left">
+          <!-- 3D Profile Visualization -->
+          <div class="profile-section">
+            <div class="profile-3d" #profile3D>
+              <!-- 3D elements will be dynamically added -->
+            </div>
+            <div class="profile-info">
+              <h3>Gourav Kumar</h3>
+              <p class="profile-title">Java Full Stack Developer</p>
+              <p class="profile-location">
+                <i class="fas fa-map-marker-alt"></i>
+                Centurion University, Odisha
+              </p>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div *ngFor="let stat of stats" class="stat-item">
+              <div class="stat-icon">
+                <i [class]="stat.icon"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">{{ stat.number }}</span>
+                <span class="stat-label">{{ stat.label }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Story & Timeline -->
+        <div class="about-right">
+          <!-- Personal Story -->
+          <div class="story-section">
+            <h3>My Story</h3>
+            <div class="story-content">
+              <p>
+                I'm a passionate Java Full Stack Developer currently pursuing my Bachelor of Technology in Computer Science and Engineering at Centurion University of Technology and Management, Odisha. My journey in technology began with a curiosity to understand how software applications work and has evolved into a deep passion for creating innovative solutions.
+              </p>
+              <p>
+                With hands-on experience in Java, Spring Boot, React, MySQL, and various other technologies, I focus on building robust web applications that solve real-world problems. My expertise spans both front-end and back-end development, allowing me to create seamless, full-stack solutions.
+              </p>
+              <p>
+                I believe in continuous learning and staying updated with the latest technologies. My projects reflect my commitment to clean code, best practices, and user-centered design. I'm always excited to take on new challenges and contribute to meaningful projects.
+              </p>
+            </div>
+            <button class="cta-button" (click)="scrollToContact()">
+              <span>Let's Work Together</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Journey Timeline -->
+          <div class="timeline-section">
+            <h3>My Journey</h3>
+            <div class="timeline">
+              <div *ngFor="let item of timelineItems; let i = index" class="timeline-item">
+                <div class="timeline-marker" [style.background-color]="item.color">
+                  <i [class]="item.icon"></i>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-year">{{ item.year }}</div>
+                  <h4 class="timeline-title">{{ item.title }}</h4>
+                  <p class="timeline-description">{{ item.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Elements -->
+      <div class="floating-elements">
+        <div class="floating-element element-1">💻</div>
+        <div class="floating-element element-2">⚡</div>
+        <div class="floating-element element-3">🚀</div>
+        <div class="floating-element element-4">🔧</div>
+        <div class="floating-element element-5">💡</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="skills-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-text">Technical Skills</span>
+        <span class="title-accent">Expertise</span>
+      </h2>
+      <p class="section-description">
+        A comprehensive overview of my technical skills and expertise across various technologies and frameworks.
+      </p>
+    </div>
+
+    <div class="skills-content">
+      <!-- 3D Skill Sphere -->
+      <div class="skill-sphere-container" #skillSphere>
+        <div class="skill-sphere">
+          <!-- Skill points will be dynamically added here -->
+        </div>
+        <div class="sphere-glow"></div>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="skills-grid" #skillsContainer>
+        <!-- Category Filter -->
+        <div class="category-filter">
+          <button 
+            *ngFor="let category of skillCategories" 
+            class="filter-btn"
+            [class.active]="activeCategory === category"
+            (click)="filterSkills(category)">
+            {{ category }}
+          </button>
+        </div>
+
+        <!-- Skills Cards -->
+        <div class="skills-cards">
+          <div 
+            *ngFor="let skill of getFilteredSkills(); let i = index" 
+            class="skill-card"
+            [style.animation-delay]="i * 0.1 + 's'"
+            (click)="selectSkill(skill)"
+            [class.selected]="selectedSkill === skill">
+            <div class="skill-icon">
+              <i [class]="skill.icon"></i>
+            </div>
+            <div class="skill-info">
+              <h3 class="skill-name">{{ skill.name }}</h3>
+              <div class="skill-category">{{ skill.category }}</div>
+              <div class="skill-level">
+                <div class="level-bar">
+                  <div 
+                    class="level-fill" 
+                    [style.width.%]="skill.level"
+                    [style.background-color]="skill.color">
+                  </div>
+                </div>
+                <span class="level-percentage">{{ skill.level }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Skill Details -->
+      <div class="skill-details" *ngIf="selectedSkill">
+        <div class="skill-detail-card">
+          <div class="detail-header">
+            <div class="detail-icon" [style.background-color]="selectedSkill.color">
+              <i [class]="selectedSkill.icon"></i>
+            </div>
+            <div class="detail-info">
+              <h3>{{ selectedSkill.name }}</h3>
+              <p>{{ selectedSkill.category }}</p>
+            </div>
+          </div>
+          <div class="detail-content">
+            <div class="skill-description">
+              <p *ngIf="selectedSkill.name === 'Java'">
+                Proficient in Java programming with expertise in object-oriented programming, 
+                Spring Framework ecosystem, and enterprise application development.
+              </p>
+              <p *ngIf="selectedSkill.name === 'Spring Boot'">
+                Experienced in building robust microservices and RESTful APIs using Spring Boot, 
+                Spring Security, and Spring Data JPA.
+              </p>
+              <p *ngIf="selectedSkill.name === 'React'">
+                Skilled in building dynamic user interfaces with React.js, including state management, 
+                component lifecycle, and modern React patterns.
+              </p>
+              <p *ngIf="selectedSkill.name === 'JavaScript'">
+                Strong foundation in JavaScript ES6+, asynchronous programming, DOM manipulation, 
+                and modern JavaScript frameworks.
+              </p>
+              <p *ngIf="selectedSkill.name === 'MySQL'">
+                Experienced in database design, optimization, and complex queries using MySQL 
+                with knowledge of indexing and performance tuning.
+              </p>
+              <p *ngIf="selectedSkill.name === 'HTML/CSS'">
+                Expert in semantic HTML5, responsive CSS3, Flexbox, Grid, and modern CSS 
+                techniques for creating beautiful user interfaces.
+              </p>
+              <p *ngIf="selectedSkill.name === 'Git'">
+                Proficient in version control with Git, including branching strategies, 
+                merge conflicts resolution, and collaborative development workflows.
+              </p>
+              <p *ngIf="selectedSkill.name === 'REST APIs'">
+                Experienced in designing and implementing RESTful APIs, including proper HTTP methods, 
+                status codes, authentication, and API documentation.
+              </p>
+            </div>
+            <div class="skill-stats">
+              <div class="stat">
+                <span class="stat-value">{{ selectedSkill.level }}%</span>
+                <span class="stat-label">Proficiency</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">2+</span>
+                <span class="stat-label">Years</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">5+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

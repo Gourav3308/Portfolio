@@ -1,0 +1,68 @@
+<div class="education-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-text">Education &</span>
+        <span class="title-accent">Certifications</span>
+      </h2>
+      <p class="section-description">
+        My academic journey and professional certifications that have shaped my expertise in technology.
+      </p>
+    </div>
+
+    <div class="education-content" #educationContainer>
+      <!-- Education -->
+      <div class="education-section-content">
+        <h3 class="subsection-title">
+          <i class="fas fa-graduation-cap"></i>
+          Education
+        </h3>
+        
+        <div class="education-cards">
+          <div *ngFor="let edu of education" class="education-card">
+            <div class="education-icon">
+              <i [class]="edu.icon"></i>
+            </div>
+            <div class="education-content">
+              <div class="education-header">
+                <h4 class="degree">{{ edu.degree }}</h4>
+                <span class="period">{{ edu.period }}</span>
+              </div>
+              <h5 class="institution">{{ edu.institution }}</h5>
+              <p class="description">{{ edu.description }}</p>
+              <div class="gpa" *ngIf="edu.gpa">
+                <i class="fas fa-star"></i>
+                {{ edu.gpa }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="certifications-section">
+        <h3 class="subsection-title">
+          <i class="fas fa-certificate"></i>
+          Certifications & Training
+        </h3>
+        
+        <div class="certifications-grid">
+          <div *ngFor="let cert of certifications" class="certification-card" (click)="openCertification(cert.link)">
+            <div class="cert-icon">
+              <i [class]="cert.icon"></i>
+            </div>
+            <div class="cert-content">
+              <h4 class="cert-title">{{ cert.title }}</h4>
+              <p class="cert-issuer">{{ cert.issuer }}</p>
+              <span class="cert-date">{{ cert.date }}</span>
+              <p class="cert-description">{{ cert.description }}</p>
+            </div>
+            <div class="cert-link">
+              <i class="fas fa-external-link-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

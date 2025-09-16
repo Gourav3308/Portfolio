@@ -1,0 +1,82 @@
+<div class="hero-section">
+  <div class="container">
+    <div class="hero-content" #heroContent>
+      <!-- Main Content -->
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="greeting">Hello, I'm</span>
+            <span class="name">Gourav Kumar</span>
+            <div class="typing-container">
+              <span class="typing-text" #typingText>{{ currentText }}</span>
+              <span class="cursor">|</span>
+            </div>
+          </h1>
+          
+          <p class="hero-description">
+            Passionate Java Full Stack Developer pursuing a degree in Computer Science with hands-on experience in Java, SpringBoot, React, MySQL, JPA, Hibernate, RESTAPIs and MVC frameworks. Focused on building web applications and enhancing skills in both front-end and back-end technologies.
+          </p>
+
+          <div class="hero-buttons">
+            <button class="btn btn-primary" (click)="scrollToContact()">
+              <span>Get In Touch</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-secondary" (click)="downloadResume()">
+              <span>Download Resume</span>
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Profile Visualization -->
+        <div class="hero-visual">
+          <div class="profile-container">
+            <div class="profile-card">
+              <div class="profile-image">
+                <div class="profile-placeholder">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-glow"></div>
+              </div>
+              <div class="profile-info">
+                <h3>Gourav Kumar</h3>
+                <p>Java Full Stack Developer</p>
+                <div class="profile-stats">
+                  <div class="stat">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Projects</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Years Learning</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Technologies</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll Down</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Elements Container -->
+  <div class="floating-elements" #floatingElements></div>
+
+  <!-- Background Elements -->
+  <div class="hero-bg">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+</div>

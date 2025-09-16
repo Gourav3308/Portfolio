@@ -1,0 +1,169 @@
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  longDescription: string;
+  technologies: string[];
+  image: string;
+  githubUrl: string;
+  liveUrl?: string;
+  featured: boolean;
+  category: string;
+  date: string;
+}
+
+@Component({
+  selector: 'app-projects-section',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './projects-section.component.html',
+  styleUrls: ['./projects-section.component.scss']
+})
+export class ProjectsSectionComponent implements OnInit, AfterViewInit {
+  @ViewChild('projectsContainer', { static: true }) projectsContainer!: ElementRef;
+
+  projects: Project[] = [
+    {
+      id: 1,
+      title: 'SmartBank',
+      description: 'A comprehensive full-stack banking application with role-based access control and secure transactions.',
+      longDescription: 'Engineered a full-stack banking application using Spring Boot and MySQL, which features a robust, Spring Security-based system for role-based access, enabling core banking operations for users and providing comprehensive management tools for administrators. The application includes features like account management, transaction processing, loan management, and real-time notifications.',
+      technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
+      image: 'smartbank.jpg',
+      githubUrl: 'https://github.com/gouravkumar/smartbank',
+      featured: true,
+      category: 'Full Stack',
+      date: 'Aug 2024'
+    },
+    {
+      id: 2,
+      title: 'Spring Boot Payment Gateway',
+      description: 'A multi-faceted payment solution with Razorpay integration and Google OAuth2 authentication.',
+      longDescription: 'Architected a multi-faceted payment solution built on Spring Boot and MySQL, which leverages Razorpay for payment processing and Google OAuth2 for streamlined user access, all managed from a centralized admin dashboard. The system supports multiple payment methods, transaction tracking, and comprehensive reporting features.',
+      technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
+      image: 'payment-gateway.jpg',
+      githubUrl: 'https://github.com/gouravkumar/payment-gateway',
+      featured: true,
+      category: 'Backend',
+      date: 'Jan 2025'
+    },
+    {
+      id: 3,
+      title: 'HealthBridge',
+      description: 'A comprehensive digital healthcare portal connecting patients with top medical professionals.',
+      longDescription: 'Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.',
+      technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
+      image: 'healthbridge.jpg',
+      githubUrl: 'https://github.com/gouravkumar/healthbridge',
+      featured: true,
+      category: 'Full Stack',
+      date: 'Aug 2025 - Present'
+    }
+  ];
+
+  selectedProject: Project | null = null;
+  projectCategories = ['All', 'Full Stack', 'Backend', 'Frontend'];
+  activeCategory = 'All';
+
+  ngOnInit() {
+    this.selectedProject = this.projects[0];
+  }
+
+  ngAfterViewInit() {
+    this.initializeAnimations();
+  }
+
+  private initializeAnimations() {
+    // Projects container animation
+    gsap.fromTo('.project-card', 
+      { 
+        y: 100, 
+        opacity: 0,
+        scale: 0.8,
+        rotationY: 15
+      },
+      { 
+        y: 0, 
+        opacity: 1,
+        scale: 1,
+        rotationY: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: this.projectsContainer.nativeElement,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+
+    // Hover animations for project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          scale: 1.05,
+          rotationY: 5,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          scale: 1,
+          rotationY: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+    });
+  }
+
+  selectProject(project: Project) {
+    this.selectedProject = project;
+    
+    // Animate project selection
+    gsap.fromTo('.project-details', 
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
+    );
+  }
+
+  filterProjects(category: string) {
+    this.activeCategory = category;
+    
+    gsap.to('.project-card', {
+      scale: 0.8,
+      opacity: 0.5,
+      duration: 0.3,
+      onComplete: () => {
+        gsap.to('.project-card', {
+          scale: 1,
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.1
+        });
+      }
+    });
+  }
+
+  getFilteredProjects(): Project[] {
+    if (this.activeCategory === 'All') {
+      return this.projects;
+    }
+    return this.projects.filter(project => project.category === this.activeCategory);
+  }
+
+  openProject(url: string) {
+    window.open(url, '_blank');
+  }
+}
