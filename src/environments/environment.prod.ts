@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-render-app.onrender.com/api' // Update this with your actual Render URL
+  apiUrl: 'https://portfolio-backend-pqck.onrender.com/api'
 };
