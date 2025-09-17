@@ -29,4 +29,4 @@ RUN ./mvnw clean package -DskipTests
 EXPOSE 8080
 
 # Run the application
-CMD ["sh", "-c", "java -jar target/portfolio-backend-*.jar"]
+CMD ["java", "-jar", "target/portfolio-backend.jar"]
