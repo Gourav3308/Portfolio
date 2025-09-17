@@ -14,8 +14,10 @@ COPY mvnw.cmd .
 COPY .mvn .mvn
 COPY pom.xml .
 
-# Make mvnw executable
+# Make mvnw executable and check its contents
 RUN chmod +x ./mvnw
+RUN ls -la ./mvnw
+RUN head -10 ./mvnw
 
 # Copy source code first
 COPY src src
@@ -24,11 +26,14 @@ COPY src src
 RUN echo "Starting Maven build process..."
 RUN ./mvnw --version
 RUN echo "Maven version check complete"
-RUN ./mvnw clean
+RUN echo "Running Maven clean with verbose output..."
+RUN ./mvnw clean -X
 RUN echo "Maven clean complete"
-RUN ./mvnw compile
+RUN echo "Running Maven compile with verbose output..."
+RUN ./mvnw compile -X
 RUN echo "Maven compile complete"
-RUN ./mvnw package -DskipTests
+RUN echo "Running Maven package with verbose output..."
+RUN ./mvnw package -DskipTests -X
 RUN echo "Maven package complete"
 
 # Debug: List current directory and target directory contents
