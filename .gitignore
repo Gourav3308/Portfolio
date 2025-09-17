@@ -56,8 +56,6 @@ jspm_packages/
 
 # Spring Boot
 backend/target/
-backend/.mvn/wrapper/maven-wrapper.jar
-backend/.mvn/wrapper/maven-wrapper.properties
 
 # Maven
 backend/pom.xml.tag
@@ -68,7 +66,6 @@ backend/release.properties
 backend/dependency-reduced-pom.xml
 backend/buildNumber.properties
 backend/.mvn/timing.properties
-backend/.mvn/wrapper/maven-wrapper.jar
 
 # Database
 *.db
