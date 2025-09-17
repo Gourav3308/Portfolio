@@ -37,4 +37,4 @@ databases:
   - name: gourav-portfolio-db
     databaseName: railway
     user: root
-    password: ""
+    password: "mOkjnEREKotplfjKaWcgPspBuTOEcMON"
