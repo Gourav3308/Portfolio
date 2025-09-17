@@ -25,6 +25,9 @@ COPY src src
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
+# Debug: List target directory contents
+RUN ls -la target/
+
 # Expose port
 EXPOSE 8080
 
