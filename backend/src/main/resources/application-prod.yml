@@ -48,6 +48,7 @@ logging:
     org.hibernate.SQL: WARN
     org.hibernate.type.descriptor.sql.BasicBinder: WARN
     org.springframework.boot.autoconfigure: DEBUG
+    org.springframework.boot.context.config: DEBUG
 
 management:
   endpoints:

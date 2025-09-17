@@ -23,13 +23,11 @@ services:
           name: gourav-portfolio-db
           property: connectionString
       - key: DB_USERNAME
-        fromDatabase:
-          name: gourav-portfolio-db
-          property: user
+        value: portfolio_user
       - key: DB_PASSWORD
-        fromDatabase:
-          name: gourav-portfolio-db
-          property: password
+        value: portfolio_password
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
 
 databases:
   - name: gourav-portfolio-db
