@@ -3,7 +3,7 @@ services:
   - type: web
     name: gourav-portfolio-frontend
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build:prod
     staticPublishPath: ./dist/gourav-portfolio
     routes:
       - type: rewrite
