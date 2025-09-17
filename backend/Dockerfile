@@ -22,18 +22,18 @@ RUN head -10 ./mvnw
 # Copy source code first
 COPY src src
 
-# Build the application with explicit Maven execution - NEW VERSION
-RUN echo "Starting Maven build process..."
-RUN ./mvnw --version
+# Build the application using system Maven (mvnw is corrupted - 0 bytes)
+RUN echo "Starting Maven build process using system Maven..."
+RUN mvn --version
 RUN echo "Maven version check complete"
 RUN echo "Running Maven clean with verbose output..."
-RUN ./mvnw clean -X
+RUN mvn clean -X
 RUN echo "Maven clean complete"
 RUN echo "Running Maven compile with verbose output..."
-RUN ./mvnw compile -X
+RUN mvn compile -X
 RUN echo "Maven compile complete"
 RUN echo "Running Maven package with verbose output..."
-RUN ./mvnw package -DskipTests -X
+RUN mvn package -DskipTests -X
 RUN echo "Maven package complete"
 
 # Debug: List current directory and target directory contents
