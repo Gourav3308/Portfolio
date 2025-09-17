@@ -50,7 +50,7 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
       issuer: 'TechnoHacks',
       date: '2024',
       description: 'Worked on REST APIs & web applications using Spring Boot. Gained hands-on experience in enterprise application development.',
-      link: '#',
+      link: 'https://drive.google.com/file/d/1JlCg6wlKuGBJ8elNEXQ6ANadTUJcEndk/view?usp=sharing',
       icon: 'fab fa-java'
     },
     {
@@ -58,7 +58,7 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
       issuer: 'GeeksforGeeks, CUTM',
       date: '2024',
       description: '16-week intensive training program covering data structures, algorithms, and competitive programming.',
-      link: '#',
+      link: 'https://drive.google.com/file/d/1Dmwu71Xamb-mLlqhL-8HMKR8TnrQmVgx/view?usp=sharing',
       icon: 'fas fa-code'
     },
     {
@@ -66,7 +66,7 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
       issuer: 'DRDO',
       date: '2024',
       description: 'Advanced workshop on quantum computing principles and applications conducted by Defence Research and Development Organisation.',
-      link: '#',
+      link: 'https://drive.google.com/file/d/1Ad1HxPkr66XDuuR7R48VGmSb1iTvi7yo/view?usp=sharing',
       icon: 'fas fa-atom'
     }
   ];

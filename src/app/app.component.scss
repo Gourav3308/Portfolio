@@ -60,6 +60,18 @@ main {
 .section {
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  padding: 100px 0;
+  
+  &.hero-section {
+    min-height: 100vh;
+    padding: 0;
+  }
+  
+  // Ensure sections are visible and scrollable
+  &:target {
+    scroll-margin-top: 80px; // Account for fixed header
+  }
 }
 
 // Responsive Design

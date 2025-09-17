@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,12 +59,14 @@ public class ProjectController {
     }
     
     @PostMapping
+    @Transactional
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
         Project savedProject = projectRepository.save(project);
         return ResponseEntity.ok(savedProject);
     }
     
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project projectDetails) {
         Optional<Project> optionalProject = projectRepository.findById(id);
         if (optionalProject.isPresent()) {
@@ -87,6 +90,7 @@ public class ProjectController {
     }
     
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         if (projectRepository.existsById(id)) {
             projectRepository.deleteById(id);

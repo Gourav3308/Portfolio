@@ -21,7 +21,7 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
   texts = [
     'Java Full Stack Developer',
     'Spring Boot Expert',
-    'React Enthusiast',
+    'Angular and React Enthusiast',
     'Problem Solver',
     'Tech Innovator'
   ];
@@ -142,8 +142,23 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
   }
 
   downloadResume() {
-    // In a real application, this would trigger a download
-    console.log('Downloading resume...');
-    // You can implement actual file download here
+    // Google Drive file ID from the provided link
+    const fileId = '1CiwZ7zv_FFgnNoZLkSsRlfZpM_LZHjXf';
+    
+    // Create direct download link from Google Drive
+    const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+    
+    // Create a temporary anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'Gourav_Kumar_Resume.pdf'; // Set the filename for download
+    link.target = '_blank';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    console.log('Resume download initiated...');
   }
 }

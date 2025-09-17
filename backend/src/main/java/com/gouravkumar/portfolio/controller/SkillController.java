@@ -1,12 +1,23 @@
 package com.gouravkumar.portfolio.controller;
 
-import com.gouravkumar.portfolio.model.Skill;
-import com.gouravkumar.portfolio.repository.SkillRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gouravkumar.portfolio.model.Skill;
+import com.gouravkumar.portfolio.repository.SkillRepository;
 
 @RestController
 @RequestMapping("/skills")
@@ -42,12 +53,14 @@ public class SkillController {
     }
     
     @PostMapping
+    @Transactional
     public ResponseEntity<Skill> createSkill(@RequestBody Skill skill) {
         Skill savedSkill = skillRepository.save(skill);
         return ResponseEntity.ok(savedSkill);
     }
     
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<Skill> updateSkill(@PathVariable Long id, @RequestBody Skill skillDetails) {
         Optional<Skill> optionalSkill = skillRepository.findById(id);
         if (optionalSkill.isPresent()) {
@@ -66,6 +79,7 @@ public class SkillController {
     }
     
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deleteSkill(@PathVariable Long id) {
         if (skillRepository.existsById(id)) {
             skillRepository.deleteById(id);

@@ -2,14 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/gourav-portfolio/index.html",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/portfolio"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/gourav-portfolio/index.html"
+      "dest": "/index.html"
     }
-  ]
+  ],
+  "buildCommand": "ng build --configuration production",
+  "devCommand": "ng serve",
+  "installCommand": "npm install"
 }

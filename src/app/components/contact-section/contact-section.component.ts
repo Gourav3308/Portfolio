@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { environment } from '../../../environments/environment';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +18,7 @@ interface ContactInfo {
 @Component({
   selector: 'app-contact-section',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './contact-section.component.html',
   styleUrls: ['./contact-section.component.scss']
 })
@@ -30,8 +32,8 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
     {
       icon: 'fas fa-envelope',
       title: 'Email',
-      value: 'gouravkumar&#64;example.com',
-      link: 'mailto:gouravkumar&#64;example.com'
+      value: 'gouravkrsah78@gmail.com',
+      link: 'mailto:gouravkrsah78@gmail.com'
     },
     {
       icon: 'fas fa-phone',
@@ -42,18 +44,18 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
     {
       icon: 'fab fa-linkedin',
       title: 'LinkedIn',
-      value: 'linkedin.com/in/gouravkumar',
-      link: 'https://linkedin.com/in/gouravkumar'
+      value: 'linkedin.com/in/gourav-java-dev',
+      link: 'https://www.linkedin.com/in/gourav-java-dev'
     },
     {
       icon: 'fab fa-github',
       title: 'GitHub',
-      value: 'github.com/gouravkumar',
-      link: 'https://github.com/gouravkumar'
+      value: 'github.com/Gourav3308',
+      link: 'https://github.com/Gourav3308'
     }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -137,21 +139,40 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
     if (this.contactForm.valid && !this.isSubmitting) {
       this.isSubmitting = true;
       
-      // Simulate form submission
-      setTimeout(() => {
-        console.log('Form submitted:', this.contactForm.value);
-        this.contactForm.reset();
-        this.isSubmitting = false;
-        
-        // Show success message (you can implement a toast notification here)
-        alert('Message sent successfully! I\'ll get back to you soon.');
-      }, 2000);
+      const formData = this.contactForm.value;
+      
+      // Use backend API to save message and send email
+      this.sendMessageViaAPI(formData);
+      
     } else {
       // Mark all fields as touched to show validation errors
       Object.keys(this.contactForm.controls).forEach(key => {
         this.contactForm.get(key)?.markAsTouched();
       });
     }
+  }
+
+  private sendMessageViaAPI(formData: any) {
+    // Send message to backend API
+    const apiUrl = `${environment.apiUrl}/contact/send`;
+    
+    this.http.post(apiUrl, formData).subscribe({
+      next: (response: any) => {
+        console.log('Message sent successfully:', response);
+        this.isSubmitting = false;
+        this.contactForm.reset();
+        
+        // Show success message
+        alert(`✅ Message sent successfully!\n\nYour message has been saved and I've been notified.\nI'll get back to you as soon as possible!\n\nMessage ID: ${response.id}`);
+      },
+      error: (error) => {
+        console.error('Error sending message:', error);
+        this.isSubmitting = false;
+        
+        // Show error message
+        alert(`❌ Failed to send message.\n\nPlease try again or contact me directly at gouravkrsah78@gmail.com\n\nError: ${error.message || 'Unknown error'}`);
+      }
+    });
   }
 
   getFieldError(fieldName: string): string {

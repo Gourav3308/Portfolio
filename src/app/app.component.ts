@@ -109,10 +109,46 @@ export class AppComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
+    console.log('Attempting to scroll to section:', sectionId);
     const element = document.getElementById(sectionId);
+    console.log('Found element:', element);
+    
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      console.log('Element position:', element.offsetTop);
+      console.log('Element visibility:', window.getComputedStyle(element).display);
+      console.log('Element height:', element.offsetHeight);
+      
+      // Try multiple scroll methods
+      try {
+        // Method 1: scrollIntoView
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+        
+        // Method 2: Fallback with manual scroll
+        setTimeout(() => {
+          const headerHeight = 80; // Adjust based on your header height
+          const targetPosition = element.offsetTop - headerHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
+        
+      } catch (error) {
+        console.error('Scroll error:', error);
+        // Method 3: Simple fallback
+        window.location.hash = sectionId;
+      }
+      
       this.isMenuOpen = false;
+    } else {
+      console.error('Section not found:', sectionId);
+      // List all available elements with IDs for debugging
+      const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+      console.log('Available IDs:', allIds);
     }
   }
 }

@@ -13,10 +13,10 @@ export class FooterComponent implements OnInit {
   currentYear = new Date().getFullYear();
 
   socialLinks = [
-    { icon: 'fab fa-linkedin', url: 'https://linkedin.com/in/gouravkumar', label: 'LinkedIn' },
-    { icon: 'fab fa-github', url: 'https://github.com/gouravkumar', label: 'GitHub' },
-    { icon: 'fab fa-twitter', url: 'https://twitter.com/gouravkumar', label: 'Twitter' },
-    { icon: 'fas fa-envelope', url: 'mailto:gouravkumar&#64;example.com', label: 'Email' }
+    { icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/gourav-java-dev', label: 'LinkedIn' },
+    { icon: 'fab fa-github', url: 'https://github.com/Gourav3308', label: 'GitHub' },
+    { icon: 'fas fa-envelope', url: 'mailto:gouravkrsah78@gmail.com', label: 'Email' },
+    { icon: 'fas fa-phone', url: 'tel:+917903840357', label: 'Phone' }
   ];
 
   quickLinks = [

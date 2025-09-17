@@ -199,9 +199,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Gourav Kumar**
 - Java Full Stack Developer
 - Centurion University of Technology and Management
-- Email: gouravkumar@example.com
-- LinkedIn: [linkedin.com/in/gouravkumar](https://linkedin.com/in/gouravkumar)
-- GitHub: [github.com/gouravkumar](https://github.com/gouravkumar)
+- Email: gouravkrsah78@gmail.com
+- Phone: +91 7903840357
+- LinkedIn: [linkedin.com/in/gourav-java-dev](https://www.linkedin.com/in/gourav-java-dev)
+- GitHub: [github.com/Gourav3308](https://github.com/Gourav3308)
 
 ---
 

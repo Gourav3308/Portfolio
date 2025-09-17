@@ -24,9 +24,15 @@ export class HeaderComponent {
   }
 
   scrollToSection(sectionId: string) {
+    console.log('Header: Attempting to scroll to section:', sectionId);
     const element = document.getElementById(sectionId);
+    console.log('Header: Found element:', element);
+    
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      console.log('Header: Element position:', element.offsetTop);
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      console.error('Header: Section not found:', sectionId);
     }
   }
 }

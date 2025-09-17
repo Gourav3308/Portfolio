@@ -4,6 +4,9 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /app
 
+# Install Maven
+RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
+
 # Copy Maven wrapper and pom.xml
 COPY mvnw .
 COPY .mvn .mvn
