@@ -35,3 +35,4 @@ databases:
   - name: gourav-portfolio-db
     databaseName: portfolio_db
     user: portfolio_user
+    password: portfolio_password
