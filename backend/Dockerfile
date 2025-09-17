@@ -1,4 +1,5 @@
 # Use OpenJDK 17 as base image
+# Cache buster: 2025-09-17
 FROM openjdk:17-jdk-slim
 
 # Set working directory
@@ -25,11 +26,11 @@ COPY src src
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
-# Debug: List target directory contents
-RUN ls -la target/
+# Debug: List target directory contents and find JAR files
+RUN ls -la target/ && find target/ -name "*.jar" -type f
 
 # Expose port
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "target/portfolio-backend.jar"]
+# Run the application - use shell to find and execute the JAR
+CMD ["sh", "-c", "JAR_FILE=$(find target/ -name '*.jar' -type f | head -1) && echo \"Found JAR: $JAR_FILE\" && java -jar \"$JAR_FILE\""]
