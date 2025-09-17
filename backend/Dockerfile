@@ -1,5 +1,5 @@
 # Use OpenJDK 17 as base image
-# Cache buster: 2025-09-17
+# Cache buster: 2025-09-17-14:27 - FORCE REBUILD
 FROM openjdk:17-jdk-slim
 
 # Set working directory
@@ -20,11 +20,16 @@ RUN chmod +x ./mvnw
 # Copy source code first
 COPY src src
 
-# Build the application with explicit Maven execution
+# Build the application with explicit Maven execution - NEW VERSION
+RUN echo "Starting Maven build process..."
 RUN ./mvnw --version
+RUN echo "Maven version check complete"
 RUN ./mvnw clean
+RUN echo "Maven clean complete"
 RUN ./mvnw compile
+RUN echo "Maven compile complete"
 RUN ./mvnw package -DskipTests
+RUN echo "Maven package complete"
 
 # Debug: List current directory and target directory contents
 RUN pwd && ls -la && ls -la target/ 2>/dev/null || echo "target directory does not exist"
