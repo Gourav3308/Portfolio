@@ -20,8 +20,11 @@ RUN chmod +x ./mvnw
 # Copy source code first
 COPY src src
 
-# Build the application with verbose output (this will download dependencies automatically)
-RUN ./mvnw clean package -DskipTests -X
+# Build the application with explicit Maven execution
+RUN ./mvnw --version
+RUN ./mvnw clean
+RUN ./mvnw compile
+RUN ./mvnw package -DskipTests
 
 # Debug: List current directory and target directory contents
 RUN pwd && ls -la && ls -la target/ 2>/dev/null || echo "target directory does not exist"
