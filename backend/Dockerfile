@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
 
 # Copy Maven wrapper and pom.xml
 COPY mvnw .
+COPY mvnw.cmd .
 COPY .mvn .mvn
 COPY pom.xml .
 
