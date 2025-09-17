@@ -17,17 +17,14 @@ COPY pom.xml .
 # Make mvnw executable
 RUN chmod +x ./mvnw
 
-# Download dependencies
-RUN ./mvnw dependency:go-offline -B
-
-# Copy source code
+# Copy source code first
 COPY src src
 
-# Build the application
-RUN ./mvnw clean package -DskipTests
+# Build the application with verbose output (this will download dependencies automatically)
+RUN ./mvnw clean package -DskipTests -X
 
-# Debug: List target directory contents and find JAR files
-RUN ls -la target/ && find target/ -name "*.jar" -type f
+# Debug: List current directory and target directory contents
+RUN pwd && ls -la && ls -la target/ 2>/dev/null || echo "target directory does not exist"
 
 # Expose port
 EXPOSE 8080
