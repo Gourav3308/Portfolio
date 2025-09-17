@@ -28,6 +28,10 @@ services:
         value: portfolio_password
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+      - key: SPRING_DATASOURCE_USERNAME
+        value: portfolio_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: portfolio_password
 
 databases:
   - name: gourav-portfolio-db
