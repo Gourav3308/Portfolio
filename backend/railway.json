@@ -5,7 +5,7 @@
     "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "startCommand": "java -jar target/portfolio-0.0.1-SNAPSHOT.jar",
+    "startCommand": "sh -c \"JAR_FILE=$(find target/ -name '*.jar' -type f | head -1) && echo 'Found JAR: $JAR_FILE' && java -jar '$JAR_FILE'\"",
     "healthcheckPath": "/api/actuator/health",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
