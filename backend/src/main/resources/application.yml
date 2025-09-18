@@ -25,7 +25,7 @@ spring:
     
   sql:
     init:
-      mode: embedded
+      mode: always
       continue-on-error: true
         
   mail:
