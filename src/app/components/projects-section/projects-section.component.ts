@@ -59,6 +59,7 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
         console.error('Error loading projects:', error);
         this.isLoading = false;
         // Fallback to hardcoded data if API fails
+        console.log('API unavailable, using fallback data');
         this.loadFallbackProjects();
       }
     });

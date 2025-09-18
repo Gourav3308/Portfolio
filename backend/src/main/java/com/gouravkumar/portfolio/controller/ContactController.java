@@ -25,6 +25,11 @@ import com.gouravkumar.portfolio.service.EmailService;
 @CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-juhw.onrender.com"})
 public class ContactController {
     
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Contact service is running");
+    }
+    
     @Autowired
     private ContactMessageRepository contactMessageRepository;
     

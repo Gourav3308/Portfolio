@@ -169,8 +169,12 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
         console.error('Error sending message:', error);
         this.isSubmitting = false;
         
-        // Show error message
-        alert(`❌ Failed to send message.\n\nPlease try again or contact me directly at gouravkrsah78@gmail.com\n\nError: ${error.message || 'Unknown error'}`);
+        // Check if it's a connection/timeout error
+        if (error.status === 0 || error.name === 'TimeoutError') {
+          alert(`❌ Backend service is currently unavailable.\n\nThis might be because:\n• The service is sleeping (free tier limitation)\n• Network connection issues\n\nPlease try again in a few moments or contact me directly at gouravkrsah78@gmail.com`);
+        } else {
+          alert(`❌ Failed to send message.\n\nPlease try again or contact me directly at gouravkrsah78@gmail.com\n\nError: ${error.message || 'Unknown error'}`);
+        }
       }
     });
   }

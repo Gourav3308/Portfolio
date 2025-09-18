@@ -24,6 +24,11 @@ import com.gouravkumar.portfolio.repository.ProjectRepository;
 @CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-juhw.onrender.com"})
 public class ProjectController {
     
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Projects service is running");
+    }
+    
     @Autowired
     private ProjectRepository projectRepository;
     
