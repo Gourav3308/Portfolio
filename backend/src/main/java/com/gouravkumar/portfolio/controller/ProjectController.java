@@ -32,37 +32,30 @@ public class ProjectController {
         return ResponseEntity.ok("Projects service is running");
     }
     
-    @GetMapping("/cleanup-duplicates")
-    public ResponseEntity<String> cleanupDuplicates() {
+    @GetMapping("/count")
+    public ResponseEntity<String> getProjectCount() {
         try {
-            // Get all projects
             List<Project> allProjects = projectRepository.findAll();
-            System.out.println("Total projects before cleanup: " + allProjects.size());
+            StringBuilder result = new StringBuilder();
+            result.append("Total projects: ").append(allProjects.size()).append("\n");
             
-            // Find and remove duplicates (keep the one with lowest ID)
-            Set<String> seenTitles = new HashSet<>();
-            List<Project> toDelete = new ArrayList<>();
-            
+            // Group by title to show duplicates
+            java.util.Map<String, List<Project>> projectsByTitle = new java.util.HashMap<>();
             for (Project project : allProjects) {
-                if (!seenTitles.add(project.getTitle())) {
-                    // This is a duplicate, mark for deletion
-                    toDelete.add(project);
-                    System.out.println("Found duplicate: " + project.getTitle() + " (ID: " + project.getId() + ")");
+                projectsByTitle.computeIfAbsent(project.getTitle(), k -> new ArrayList<>()).add(project);
+            }
+            
+            for (java.util.Map.Entry<String, List<Project>> entry : projectsByTitle.entrySet()) {
+                result.append(entry.getKey()).append(": ").append(entry.getValue().size()).append(" entries (IDs: ");
+                for (Project p : entry.getValue()) {
+                    result.append(p.getId()).append(" ");
                 }
+                result.append(")\n");
             }
             
-            // Delete duplicates
-            for (Project duplicate : toDelete) {
-                projectRepository.delete(duplicate);
-            }
-            
-            System.out.println("Deleted " + toDelete.size() + " duplicate projects");
-            
-            return ResponseEntity.ok("Cleanup completed. Deleted " + toDelete.size() + " duplicate projects.");
+            return ResponseEntity.ok(result.toString());
         } catch (Exception e) {
-            System.err.println("Error during cleanup: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Error during cleanup: " + e.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
         }
     }
     
