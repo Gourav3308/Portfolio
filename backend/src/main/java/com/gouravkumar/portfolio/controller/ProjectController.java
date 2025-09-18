@@ -1,7 +1,10 @@
 package com.gouravkumar.portfolio.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +30,40 @@ public class ProjectController {
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
         return ResponseEntity.ok("Projects service is running");
+    }
+    
+    @PostMapping("/cleanup-duplicates")
+    public ResponseEntity<String> cleanupDuplicates() {
+        try {
+            // Get all projects
+            List<Project> allProjects = projectRepository.findAll();
+            System.out.println("Total projects before cleanup: " + allProjects.size());
+            
+            // Find and remove duplicates (keep the one with lowest ID)
+            Set<String> seenTitles = new HashSet<>();
+            List<Project> toDelete = new ArrayList<>();
+            
+            for (Project project : allProjects) {
+                if (!seenTitles.add(project.getTitle())) {
+                    // This is a duplicate, mark for deletion
+                    toDelete.add(project);
+                    System.out.println("Found duplicate: " + project.getTitle() + " (ID: " + project.getId() + ")");
+                }
+            }
+            
+            // Delete duplicates
+            for (Project duplicate : toDelete) {
+                projectRepository.delete(duplicate);
+            }
+            
+            System.out.println("Deleted " + toDelete.size() + " duplicate projects");
+            
+            return ResponseEntity.ok("Cleanup completed. Deleted " + toDelete.size() + " duplicate projects.");
+        } catch (Exception e) {
+            System.err.println("Error during cleanup: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Error during cleanup: " + e.getMessage());
+        }
     }
     
     @Autowired
