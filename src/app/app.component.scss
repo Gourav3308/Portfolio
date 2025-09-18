@@ -80,4 +80,57 @@ main {
     width: 100%;
     right: -100%;
   }
+  
+  main {
+    padding: 0 15px;
+  }
+  
+  .section {
+    min-height: auto;
+    padding: 60px 0;
+    
+    &.hero-section {
+      min-height: 100vh;
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 10px;
+  }
+  
+  .section {
+    padding: 40px 0;
+    
+    &.hero-section {
+      padding: 0;
+    }
+  }
+  
+  .mobile-menu {
+    .mobile-menu-content {
+      padding: 80px 20px 20px;
+      gap: 20px;
+      
+      .mobile-menu-item {
+        font-size: 16px;
+        padding: 12px 0;
+      }
+    }
+  }
+}
+
+// Landscape orientation fixes
+@media (max-width: 768px) and (orientation: landscape) {
+  .section {
+    min-height: auto;
+    padding: 30px 0;
+    
+    &.hero-section {
+      min-height: 100vh;
+      padding: 10px 0;
+    }
+  }
 }

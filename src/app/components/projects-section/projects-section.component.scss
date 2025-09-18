@@ -485,6 +485,37 @@
   }
 }
 
+// Loading State Styles
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(99, 102, 241, 0.2);
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media (max-width: 480px) {
   .category-filter {
     justify-content: center;
@@ -498,6 +529,20 @@
       width: 100%;
       max-width: 200px;
       justify-content: center;
+    }
+  }
+  
+  .loading-state {
+    padding: 40px 15px;
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border-width: 3px;
+    }
+    
+    p {
+      font-size: 1rem;
     }
   }
 }
