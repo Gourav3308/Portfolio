@@ -32,7 +32,7 @@ public class ProjectController {
         return ResponseEntity.ok("Projects service is running");
     }
     
-    @PostMapping("/cleanup-duplicates")
+    @GetMapping("/cleanup-duplicates")
     public ResponseEntity<String> cleanupDuplicates() {
         try {
             // Get all projects
