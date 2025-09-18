@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gouravkumar.portfolio.model.Project;
 import com.gouravkumar.portfolio.repository.ProjectRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 @RestController
 @RequestMapping("/projects")
