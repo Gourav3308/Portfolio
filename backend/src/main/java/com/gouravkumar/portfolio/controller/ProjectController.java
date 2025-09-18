@@ -54,10 +54,33 @@ public class ProjectController {
             // Get count after cleanup
             int finalCount = projectRepository.findAll().size();
             
-            return ResponseEntity.ok("Cleanup completed! Removed " + deletedCount + " duplicates. " + 
-                                   "Projects: " + originalCount + " -> " + finalCount);
+            String result = "Cleanup completed! Removed " + deletedCount + " duplicates. " + 
+                           "Projects: " + originalCount + " -> " + finalCount;
+            System.out.println(result);
+            return ResponseEntity.ok(result);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+            String error = "Error: " + e.getMessage();
+            System.err.println(error);
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(error);
+        }
+    }
+    
+    @GetMapping("/reset")
+    @Transactional
+    public ResponseEntity<String> resetData() {
+        try {
+            // Delete all projects
+            projectRepository.deleteAll();
+            
+            // Force the DataSeeder to run again by calling it manually
+            // This will only add data if count is 0 (which it will be after deleteAll)
+            return ResponseEntity.ok("All projects deleted. DataSeeder will recreate them on next startup.");
+        } catch (Exception e) {
+            String error = "Error: " + e.getMessage();
+            System.err.println(error);
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(error);
         }
     }
     
