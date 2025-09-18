@@ -22,7 +22,7 @@ import com.gouravkumar.portfolio.service.EmailService;
 
 @RestController
 @RequestMapping("/contact")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-juhw.onrender.com"})
 public class ContactController {
     
     @Autowired

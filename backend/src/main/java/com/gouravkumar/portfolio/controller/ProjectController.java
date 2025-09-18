@@ -21,7 +21,7 @@ import com.gouravkumar.portfolio.repository.ProjectRepository;
 
 @RestController
 @RequestMapping("/projects")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://portfolio-juhw.onrender.com"})
 public class ProjectController {
     
     @Autowired

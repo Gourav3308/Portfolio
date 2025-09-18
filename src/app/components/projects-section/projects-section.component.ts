@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { environment } from '../../../environments/environment';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,58 +24,88 @@ interface Project {
 @Component({
   selector: 'app-projects-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './projects-section.component.html',
   styleUrls: ['./projects-section.component.scss']
 })
 export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   @ViewChild('projectsContainer', { static: true }) projectsContainer!: ElementRef;
 
-  projects: Project[] = [
-    {
-      id: 1,
-      title: 'SmartBank',
-      description: 'A comprehensive full-stack banking application with role-based access control and secure transactions.',
-      longDescription: 'Engineered a full-stack banking application using Spring Boot and MySQL, which features a robust, Spring Security-based system for role-based access, enabling core banking operations for users and providing comprehensive management tools for administrators. The application includes features like account management, transaction processing, loan management, and real-time notifications.',
-      technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
-      image: 'smartbank.jpg',
-      githubUrl: 'https://github.com/gouravkumar/smartbank',
-      featured: true,
-      category: 'Full Stack',
-      date: 'Aug 2024'
-    },
-    {
-      id: 2,
-      title: 'Spring Boot Payment Gateway',
-      description: 'A multi-faceted payment solution with Razorpay integration and Google OAuth2 authentication.',
-      longDescription: 'Architected a multi-faceted payment solution built on Spring Boot and MySQL, which leverages Razorpay for payment processing and Google OAuth2 for streamlined user access, all managed from a centralized admin dashboard. The system supports multiple payment methods, transaction tracking, and comprehensive reporting features.',
-      technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
-      image: 'payment-gateway.jpg',
-      githubUrl: 'https://github.com/gouravkumar/payment-gateway',
-      featured: true,
-      category: 'Backend',
-      date: 'Jan 2025'
-    },
-    {
-      id: 3,
-      title: 'HealthBridge',
-      description: 'A comprehensive digital healthcare portal connecting patients with top medical professionals.',
-      longDescription: 'Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.',
-      technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
-      image: 'healthbridge.jpg',
-      githubUrl: 'https://github.com/gouravkumar/healthbridge',
-      featured: true,
-      category: 'Full Stack',
-      date: 'Aug 2025 - Present'
-    }
-  ];
-
+  projects: Project[] = [];
   selectedProject: Project | null = null;
   projectCategories = ['All', 'Full Stack', 'Backend', 'Frontend'];
   activeCategory = 'All';
+  isLoading = true;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.selectedProject = this.projects[0];
+    this.loadProjects();
+  }
+
+  private loadProjects() {
+    const apiUrl = `${environment.apiUrl}/projects`;
+    
+    this.http.get<Project[]>(apiUrl).subscribe({
+      next: (data) => {
+        this.projects = data;
+        if (this.projects.length > 0) {
+          this.selectedProject = this.projects[0];
+        }
+        this.isLoading = false;
+        console.log('Projects loaded successfully:', this.projects);
+      },
+      error: (error) => {
+        console.error('Error loading projects:', error);
+        this.isLoading = false;
+        // Fallback to hardcoded data if API fails
+        this.loadFallbackProjects();
+      }
+    });
+  }
+
+  private loadFallbackProjects() {
+    this.projects = [
+      {
+        id: 1,
+        title: 'SmartBank',
+        description: 'A comprehensive full-stack banking application with role-based access control and secure transactions.',
+        longDescription: 'Engineered a full-stack banking application using Spring Boot and MySQL, which features a robust, Spring Security-based system for role-based access, enabling core banking operations for users and providing comprehensive management tools for administrators. The application includes features like account management, transaction processing, loan management, and real-time notifications.',
+        technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
+        image: 'smartbank.jpg',
+        githubUrl: 'https://github.com/gouravkumar/smartbank',
+        featured: true,
+        category: 'Full Stack',
+        date: 'Aug 2024'
+      },
+      {
+        id: 2,
+        title: 'Spring Boot Payment Gateway',
+        description: 'A multi-faceted payment solution with Razorpay integration and Google OAuth2 authentication.',
+        longDescription: 'Architected a multi-faceted payment solution built on Spring Boot and MySQL, which leverages Razorpay for payment processing and Google OAuth2 for streamlined user access, all managed from a centralized admin dashboard. The system supports multiple payment methods, transaction tracking, and comprehensive reporting features.',
+        technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
+        image: 'payment-gateway.jpg',
+        githubUrl: 'https://github.com/gouravkumar/payment-gateway',
+        featured: true,
+        category: 'Backend',
+        date: 'Jan 2025'
+      },
+      {
+        id: 3,
+        title: 'HealthBridge',
+        description: 'A comprehensive digital healthcare portal connecting patients with top medical professionals.',
+        longDescription: 'Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.',
+        technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
+        image: 'healthbridge.jpg',
+        githubUrl: 'https://github.com/gouravkumar/healthbridge',
+        featured: true,
+        category: 'Full Stack',
+        date: 'Aug 2025 - Present'
+      }
+    ];
+    if (this.projects.length > 0) {
+      this.selectedProject = this.projects[0];
+    }
   }
 
   ngAfterViewInit() {
