@@ -32,28 +32,32 @@ public class ProjectController {
         return ResponseEntity.ok("Projects service is running");
     }
     
-    @GetMapping("/count")
-    public ResponseEntity<String> getProjectCount() {
+    @GetMapping("/cleanup")
+    public ResponseEntity<String> cleanupDuplicates() {
         try {
             List<Project> allProjects = projectRepository.findAll();
-            StringBuilder result = new StringBuilder();
-            result.append("Total projects: ").append(allProjects.size()).append("\n");
+            int originalCount = allProjects.size();
             
-            // Group by title to show duplicates
-            java.util.Map<String, List<Project>> projectsByTitle = new java.util.HashMap<>();
+            // Find duplicates and delete all but the first occurrence
+            Set<String> seenTitles = new HashSet<>();
+            List<Project> toDelete = new ArrayList<>();
+            
             for (Project project : allProjects) {
-                projectsByTitle.computeIfAbsent(project.getTitle(), k -> new ArrayList<>()).add(project);
-            }
-            
-            for (java.util.Map.Entry<String, List<Project>> entry : projectsByTitle.entrySet()) {
-                result.append(entry.getKey()).append(": ").append(entry.getValue().size()).append(" entries (IDs: ");
-                for (Project p : entry.getValue()) {
-                    result.append(p.getId()).append(" ");
+                if (!seenTitles.add(project.getTitle())) {
+                    // This is a duplicate, mark for deletion
+                    toDelete.add(project);
                 }
-                result.append(")\n");
             }
             
-            return ResponseEntity.ok(result.toString());
+            // Delete duplicates
+            for (Project duplicate : toDelete) {
+                projectRepository.delete(duplicate);
+            }
+            
+            int finalCount = projectRepository.findAll().size();
+            
+            return ResponseEntity.ok("Cleanup completed. Removed " + toDelete.size() + " duplicates. " + 
+                                   "Projects: " + originalCount + " -> " + finalCount);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
         }
