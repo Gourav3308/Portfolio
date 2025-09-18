@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,31 +34,29 @@ public class ProjectController {
         return ResponseEntity.ok("Projects service is running");
     }
     
+    @Autowired
+    private EntityManager entityManager;
+    
     @GetMapping("/cleanup")
+    @Transactional
     public ResponseEntity<String> cleanupDuplicates() {
         try {
-            List<Project> allProjects = projectRepository.findAll();
-            int originalCount = allProjects.size();
+            // Get count before cleanup
+            int originalCount = projectRepository.findAll().size();
             
-            // Find duplicates and delete all but the first occurrence
-            Set<String> seenTitles = new HashSet<>();
-            List<Project> toDelete = new ArrayList<>();
+            // Use native SQL to delete duplicates, keeping only the one with the lowest ID
+            String sql = "DELETE p1 FROM projects p1 " +
+                        "INNER JOIN projects p2 " +
+                        "WHERE p1.id > p2.id " +
+                        "AND p1.title = p2.title";
             
-            for (Project project : allProjects) {
-                if (!seenTitles.add(project.getTitle())) {
-                    // This is a duplicate, mark for deletion
-                    toDelete.add(project);
-                }
-            }
+            Query query = entityManager.createNativeQuery(sql);
+            int deletedCount = query.executeUpdate();
             
-            // Delete duplicates
-            for (Project duplicate : toDelete) {
-                projectRepository.delete(duplicate);
-            }
-            
+            // Get count after cleanup
             int finalCount = projectRepository.findAll().size();
             
-            return ResponseEntity.ok("Cleanup completed. Removed " + toDelete.size() + " duplicates. " + 
+            return ResponseEntity.ok("Cleanup completed! Removed " + deletedCount + " duplicates. " + 
                                    "Projects: " + originalCount + " -> " + finalCount);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
