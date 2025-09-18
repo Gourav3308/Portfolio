@@ -25,7 +25,7 @@ datasource:
     
   sql:
     init:
-      mode: always
+      mode: embedded
       continue-on-error: true
         
   mail:
