@@ -60,11 +60,11 @@ public class DataSeeder implements CommandLineRunner {
             healthBridge.setDescription("A comprehensive digital healthcare portal connecting patients with top medical professionals.");
             healthBridge.setLongDescription("Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.");
             healthBridge.setTechnologies(Arrays.asList("Java", "Spring Boot", "React", "MySQL", "REST APIs", "JWT"));
-            healthBridge.setGithubUrl("https://github.com/gouravkumar/healthbridge");
-            healthBridge.setLiveUrl("");
+            healthBridge.setGithubUrl("https://github.com/Gourav3308/Healthbridge");
+            healthBridge.setLiveUrl("https://healthbridge-frontend-jj1l.onrender.com/");
             healthBridge.setFeatured(true);
             healthBridge.setCategory("Full Stack");
-            healthBridge.setDate(LocalDate.of(2025, 8, 1));
+            healthBridge.setDate(LocalDate.of(2025, 4, 1));
             
             projectRepository.saveAll(Arrays.asList(smartBank, paymentGateway, healthBridge));
             System.out.println("Projects seeded successfully!");
