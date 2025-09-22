@@ -1,5 +1,7 @@
 package com.gouravkumar.portfolio.controller;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +78,60 @@ public class ProjectController {
             // Force the DataSeeder to run again by calling it manually
             // This will only add data if count is 0 (which it will be after deleteAll)
             return ResponseEntity.ok("All projects deleted. DataSeeder will recreate them on next startup.");
+        } catch (Exception e) {
+            String error = "Error: " + e.getMessage();
+            System.err.println(error);
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(error);
+        }
+    }
+    
+    @GetMapping("/seed")
+    @Transactional
+    public ResponseEntity<String> seedData() {
+        try {
+            // Check if projects already exist
+            if (projectRepository.count() > 0) {
+                return ResponseEntity.ok("Projects already exist. Count: " + projectRepository.count());
+            }
+            
+            // Create projects manually
+            Project smartBank = new Project();
+            smartBank.setTitle("SmartBank");
+            smartBank.setDescription("A comprehensive full-stack banking application with role-based access control and secure transactions.");
+            smartBank.setLongDescription("Engineered a full-stack banking application using Spring Boot and MySQL, which features a robust, Spring Security-based system for role-based access, enabling core banking operations for users and providing comprehensive management tools for administrators. The application includes features like account management, transaction processing, loan management, and real-time notifications.");
+            smartBank.setTechnologies(Arrays.asList("Java", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap"));
+            smartBank.setGithubUrl("https://github.com/gouravkumar/smartbank");
+            smartBank.setLiveUrl("");
+            smartBank.setFeatured(true);
+            smartBank.setCategory("Full Stack");
+            smartBank.setDate(LocalDate.of(2024, 8, 1));
+            
+            Project paymentGateway = new Project();
+            paymentGateway.setTitle("Spring Boot Payment Gateway");
+            paymentGateway.setDescription("A multi-faceted payment solution with Razorpay integration and Google OAuth2 authentication.");
+            paymentGateway.setLongDescription("Architected a multi-faceted payment solution built on Spring Boot and MySQL, which leverages Razorpay for payment processing and Google OAuth2 for streamlined user access, all managed from a centralized admin dashboard. The system supports multiple payment methods, transaction tracking, and comprehensive reporting features.");
+            paymentGateway.setTechnologies(Arrays.asList("Java", "Spring Boot", "Razorpay", "Google OAuth2", "MySQL", "REST APIs"));
+            paymentGateway.setGithubUrl("https://github.com/gouravkumar/payment-gateway");
+            paymentGateway.setLiveUrl("");
+            paymentGateway.setFeatured(true);
+            paymentGateway.setCategory("Backend");
+            paymentGateway.setDate(LocalDate.of(2025, 1, 1));
+            
+            Project healthBridge = new Project();
+            healthBridge.setTitle("HealthBridge");
+            healthBridge.setDescription("A comprehensive digital healthcare portal connecting patients with top medical professionals.");
+            healthBridge.setLongDescription("Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.");
+            healthBridge.setTechnologies(Arrays.asList("Java", "Spring Boot", "React", "MySQL", "REST APIs", "JWT"));
+            healthBridge.setGithubUrl("https://github.com/Gourav3308/Healthbridge");
+            healthBridge.setLiveUrl("https://healthbridge-frontend-jj1l.onrender.com/");
+            healthBridge.setFeatured(true);
+            healthBridge.setCategory("Full Stack");
+            healthBridge.setDate(LocalDate.of(2025, 4, 1));
+            
+            projectRepository.saveAll(Arrays.asList(smartBank, paymentGateway, healthBridge));
+            
+            return ResponseEntity.ok("Projects seeded successfully! Count: " + projectRepository.count());
         } catch (Exception e) {
             String error = "Error: " + e.getMessage();
             System.err.println(error);
