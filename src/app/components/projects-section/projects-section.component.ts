@@ -35,14 +35,16 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   selectedProject: Project | null = null;
   projectCategories = ['All', 'Full Stack', 'Backend', 'Frontend'];
   activeCategory = 'All';
-  isLoading = true;
+  isLoading = false; // Set to false initially since we load fallback data immediately
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    console.log('ProjectsSectionComponent ngOnInit called');
     // Load fallback data immediately to ensure projects always show
     this.loadFallbackProjects();
     this.isLoading = false;
+    console.log('Fallback projects loaded:', this.projects.length, 'projects');
     
     // Also try to load from API
     this.loadProjects();
@@ -71,6 +73,7 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   }
 
   private loadFallbackProjects() {
+    console.log('Loading fallback projects...');
     this.projects = [
       {
         id: 1,
@@ -112,9 +115,12 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
         date: 'Apr 2025'
       }
     ];
+    console.log('Fallback projects array created with', this.projects.length, 'projects');
     if (this.projects.length > 0) {
       this.selectedProject = this.projects[0];
+      console.log('Selected project set to:', this.selectedProject.title);
     }
+    console.log('Final projects array:', this.projects);
   }
 
   ngAfterViewInit() {
