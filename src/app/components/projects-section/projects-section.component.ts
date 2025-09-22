@@ -29,7 +29,7 @@ interface Project {
   styleUrls: ['./projects-section.component.scss']
 })
 export class ProjectsSectionComponent implements OnInit, AfterViewInit {
-  @ViewChild('projectsContainer', { static: true }) projectsContainer!: ElementRef;
+  @ViewChild('projectsContainer', { static: false }) projectsContainer!: ElementRef;
 
   projects: Project[] = [];
   selectedProject: Project | null = null;
@@ -124,10 +124,19 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initializeAnimations();
+    // Add a small delay to ensure DOM is fully rendered
+    setTimeout(() => {
+      this.initializeAnimations();
+    }, 100);
   }
 
   private initializeAnimations() {
+    // Check if projectsContainer is available
+    if (!this.projectsContainer || !this.projectsContainer.nativeElement) {
+      console.log('Projects container not available yet, skipping animations');
+      return;
+    }
+
     // Projects container animation
     gsap.fromTo('.project-card', 
       { 
