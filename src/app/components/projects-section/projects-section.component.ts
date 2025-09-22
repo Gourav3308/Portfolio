@@ -124,10 +124,15 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Add a small delay to ensure DOM is fully rendered
+    // Add a longer delay and check multiple times to ensure DOM is fully rendered
     setTimeout(() => {
       this.initializeAnimations();
-    }, 100);
+    }, 500);
+    
+    // Also try again after a longer delay
+    setTimeout(() => {
+      this.initializeAnimations();
+    }, 1000);
   }
 
   private initializeAnimations() {
@@ -136,6 +141,15 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
       console.log('Projects container not available yet, skipping animations');
       return;
     }
+
+    // Check if project cards exist
+    const projectCards = document.querySelectorAll('.project-card');
+    if (projectCards.length === 0) {
+      console.log('No project cards found, skipping animations');
+      return;
+    }
+
+    console.log('Initializing animations for', projectCards.length, 'project cards');
 
     // Projects container animation
     gsap.fromTo('.project-card', 
