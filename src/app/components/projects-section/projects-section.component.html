@@ -28,11 +28,6 @@
         <p>Loading projects...</p>
       </div>
 
-      <!-- Debug Info -->
-      <div style="color: white; margin: 20px 0;">
-        Debug: isLoading={{isLoading}}, projects.length={{projects.length}}, getFilteredProjects().length={{getFilteredProjects().length}}
-      </div>
-
       <!-- Projects Grid -->
       <div *ngIf="!isLoading" class="projects-grid" #projectsContainer>
         <div 
