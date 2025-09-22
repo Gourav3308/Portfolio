@@ -28,6 +28,14 @@
         <p>Loading projects...</p>
       </div>
 
+      <!-- Simple Test Display -->
+      <div style="color: white; background: red; padding: 20px; margin: 20px 0;">
+        <h3>TEST: Projects Component is Working!</h3>
+        <p>Projects Count: {{projects.length}}</p>
+        <p>Loading: {{isLoading}}</p>
+        <p>Active Category: {{activeCategory}}</p>
+      </div>
+
       <!-- Projects Grid -->
       <div *ngIf="!isLoading" class="projects-grid" #projectsContainer>
         <div 
