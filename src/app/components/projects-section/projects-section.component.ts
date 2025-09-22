@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
 
 interface Project {
   id: number;
@@ -20,7 +18,7 @@ interface Project {
 @Component({
   selector: 'app-projects-section',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './projects-section.component.html',
   styleUrls: ['./projects-section.component.scss']
 })
@@ -30,42 +28,18 @@ export class ProjectsSectionComponent implements OnInit {
   selectedProject: Project | null = null;
   projectCategories = ['All', 'Full Stack', 'Backend', 'Frontend'];
   activeCategory = 'All';
-  isLoading = false; // Set to false initially since we load fallback data immediately
+  isLoading = false;
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {
-    console.log('ProjectsSectionComponent ngOnInit called');
-    // Load fallback data immediately to ensure projects always show
+    console.log('ProjectsSectionComponent ngOnInit called - SIMPLIFIED VERSION');
+    // Load fallback data immediately
     this.loadFallbackProjects();
     this.isLoading = false;
     console.log('Fallback projects loaded:', this.projects.length, 'projects');
-    
-    // Also try to load from API
-    this.loadProjects();
   }
 
-  private loadProjects() {
-    const apiUrl = `${environment.apiUrl}/projects`;
-    
-    this.http.get<Project[]>(apiUrl).subscribe({
-      next: (data) => {
-        // Only update if we got data from API
-        if (data && data.length > 0) {
-          this.projects = data;
-          this.selectedProject = this.projects[0];
-          console.log('Projects loaded from API:', this.projects);
-        }
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error loading projects from API:', error);
-        this.isLoading = false;
-        // Keep the fallback data that was already loaded
-        console.log('API unavailable, keeping fallback data');
-      }
-    });
-  }
 
   private loadFallbackProjects() {
     console.log('Loading fallback projects...');
