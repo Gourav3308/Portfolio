@@ -40,6 +40,11 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    // Load fallback data immediately to ensure projects always show
+    this.loadFallbackProjects();
+    this.isLoading = false;
+    
+    // Also try to load from API
     this.loadProjects();
   }
 
@@ -48,19 +53,19 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
     
     this.http.get<Project[]>(apiUrl).subscribe({
       next: (data) => {
-        this.projects = data;
-        if (this.projects.length > 0) {
+        // Only update if we got data from API
+        if (data && data.length > 0) {
+          this.projects = data;
           this.selectedProject = this.projects[0];
+          console.log('Projects loaded from API:', this.projects);
         }
         this.isLoading = false;
-        console.log('Projects loaded successfully:', this.projects);
       },
       error: (error) => {
-        console.error('Error loading projects:', error);
+        console.error('Error loading projects from API:', error);
         this.isLoading = false;
-        // Fallback to hardcoded data if API fails
-        console.log('API unavailable, using fallback data');
-        this.loadFallbackProjects();
+        // Keep the fallback data that was already loaded
+        console.log('API unavailable, keeping fallback data');
       }
     });
   }
