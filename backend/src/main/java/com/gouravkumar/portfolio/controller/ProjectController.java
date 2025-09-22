@@ -86,7 +86,7 @@ public class ProjectController {
         }
     }
     
-    @GetMapping("/seed")
+    @PostMapping("/seed")
     @Transactional
     public ResponseEntity<String> seedData() {
         try {
