@@ -75,6 +75,7 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
         technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
         image: 'smartbank.jpg',
         githubUrl: 'https://github.com/gouravkumar/smartbank',
+        liveUrl: '',
         featured: true,
         category: 'Full Stack',
         date: 'Aug 2024'
@@ -87,6 +88,7 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
         technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
         image: 'payment-gateway.jpg',
         githubUrl: 'https://github.com/gouravkumar/payment-gateway',
+        liveUrl: '',
         featured: true,
         category: 'Backend',
         date: 'Jan 2025'
@@ -98,10 +100,11 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
         longDescription: 'Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.',
         technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
         image: 'healthbridge.jpg',
-        githubUrl: 'https://github.com/gouravkumar/healthbridge',
+        githubUrl: 'https://github.com/Gourav3308/Healthbridge',
+        liveUrl: 'https://healthbridge-frontend-jj1l.onrender.com/',
         featured: true,
         category: 'Full Stack',
-        date: 'Aug 2025 - Present'
+        date: 'Apr 2025'
       }
     ];
     if (this.projects.length > 0) {
