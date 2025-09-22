@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
   id: number;
@@ -28,8 +24,7 @@ interface Project {
   templateUrl: './projects-section.component.html',
   styleUrls: ['./projects-section.component.scss']
 })
-export class ProjectsSectionComponent implements OnInit, AfterViewInit {
-  @ViewChild('projectsContainer', { static: false }) projectsContainer!: ElementRef;
+export class ProjectsSectionComponent implements OnInit {
 
   projects: Project[] = [];
   selectedProject: Project | null = null;
@@ -123,107 +118,14 @@ export class ProjectsSectionComponent implements OnInit, AfterViewInit {
     console.log('Final projects array:', this.projects);
   }
 
-  ngAfterViewInit() {
-    // Add a longer delay and check multiple times to ensure DOM is fully rendered
-    setTimeout(() => {
-      this.initializeAnimations();
-    }, 500);
-    
-    // Also try again after a longer delay
-    setTimeout(() => {
-      this.initializeAnimations();
-    }, 1000);
-  }
 
-  private initializeAnimations() {
-    // Check if projectsContainer is available
-    if (!this.projectsContainer || !this.projectsContainer.nativeElement) {
-      console.log('Projects container not available yet, skipping animations');
-      return;
-    }
-
-    // Check if project cards exist
-    const projectCards = document.querySelectorAll('.project-card');
-    if (projectCards.length === 0) {
-      console.log('No project cards found, skipping animations');
-      return;
-    }
-
-    console.log('Initializing animations for', projectCards.length, 'project cards');
-
-    // Projects container animation
-    gsap.fromTo('.project-card', 
-      { 
-        y: 100, 
-        opacity: 0,
-        scale: 0.8,
-        rotationY: 15
-      },
-      { 
-        y: 0, 
-        opacity: 1,
-        scale: 1,
-        rotationY: 0,
-        duration: 1,
-        ease: 'power3.out',
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: this.projectsContainer.nativeElement,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-
-    // Hover animations for project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          scale: 1.05,
-          rotationY: 5,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          scale: 1,
-          rotationY: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
-  }
 
   selectProject(project: Project) {
     this.selectedProject = project;
-    
-    // Animate project selection
-    gsap.fromTo('.project-details', 
-      { scale: 0.8, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
-    );
   }
 
   filterProjects(category: string) {
     this.activeCategory = category;
-    
-    gsap.to('.project-card', {
-      scale: 0.8,
-      opacity: 0.5,
-      duration: 0.3,
-      onComplete: () => {
-        gsap.to('.project-card', {
-          scale: 1,
-          opacity: 1,
-          duration: 0.3,
-          stagger: 0.1
-        });
-      }
-    });
   }
 
   getFilteredProjects(): Project[] {
