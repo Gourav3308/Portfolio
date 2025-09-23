@@ -56,8 +56,8 @@ export class ProjectsSectionComponent implements OnInit {
         longDescription: 'Engineered a full-stack banking application using Spring Boot and MySQL, which features a robust, Spring Security-based system for role-based access, enabling core banking operations for users and providing comprehensive management tools for administrators. The application includes features like account management, transaction processing, loan management, and real-time notifications.',
         technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
         image: 'smartbank.jpg',
-        githubUrl: 'https://github.com/gouravkumar/smartbank',
-        liveUrl: '',
+        githubUrl: 'https://github.com/Gourav3308/SmartBank',
+        liveUrl: 'https://smartbank-demo.vercel.app',
         featured: true,
         category: 'Full Stack',
         date: 'Aug 2024'
@@ -69,8 +69,8 @@ export class ProjectsSectionComponent implements OnInit {
         longDescription: 'Architected a multi-faceted payment solution built on Spring Boot and MySQL, which leverages Razorpay for payment processing and Google OAuth2 for streamlined user access, all managed from a centralized admin dashboard. The system supports multiple payment methods, transaction tracking, and comprehensive reporting features.',
         technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
         image: 'payment-gateway.jpg',
-        githubUrl: 'https://github.com/gouravkumar/payment-gateway',
-        liveUrl: '',
+        githubUrl: 'https://github.com/Gourav3308/Payment-Gateway',
+        liveUrl: 'https://payment-gateway-demo.vercel.app',
         featured: true,
         category: 'Backend',
         date: 'Jan 2025'
@@ -82,11 +82,11 @@ export class ProjectsSectionComponent implements OnInit {
         longDescription: 'Developing a comprehensive digital healthcare portal using Spring Boot and React, designed to streamline appointment booking with top medical professionals. Implementing key modules including a doctor listing, appointment scheduling, medicine search, and a repository of verified health articles, with the goal of providing accessible and reliable medical services to all populations.',
         technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
         image: 'healthbridge.jpg',
-        githubUrl: 'https://github.com/Gourav3308/Healthbridge',
-        liveUrl: 'https://healthbridge-frontend-jj1l.onrender.com/',
+        githubUrl: 'https://github.com/Gourav3308/HealthBridge',
+        liveUrl: 'https://healthbridge-demo.vercel.app',
         featured: true,
         category: 'Full Stack',
-        date: 'Apr 2025'
+        date: 'Aug 2025'
       }
     ];
     console.log('Fallback projects array created with', this.projects.length, 'projects');
