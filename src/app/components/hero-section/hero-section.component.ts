@@ -34,7 +34,7 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.initializeAnimations();
-    this.createFloatingElements();
+    // this.createFloatingElements(); // Removed floating icons
   }
 
   private initializeAnimations() {
