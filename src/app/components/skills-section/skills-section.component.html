@@ -32,7 +32,7 @@
             [style.animation-delay]="i * 0.1 + 's'"
             (click)="selectSkill(skill)"
             [class.selected]="selectedSkill === skill">
-            <div class="skill-icon">
+            <div class="skill-icon" [ngClass]="getSkillIconClass(skill.name)">
               <i [class]="skill.icon"></i>
             </div>
             <div class="skill-info">

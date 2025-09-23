@@ -1,0 +1,202 @@
+.three-d-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    filter: blur(0.5px);
+    transition: opacity 0.3s ease;
+  }
+  
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    
+    .loading-spinner {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+      
+      .spinner-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid transparent;
+        border-top: 2px solid #4a9eff;
+        border-radius: 50%;
+        animation: spin 1.5s linear infinite;
+        
+        &:nth-child(1) {
+          animation-delay: 0s;
+          border-top-color: #4a9eff;
+        }
+        
+        &:nth-child(2) {
+          animation-delay: 0.5s;
+          border-top-color: #7c3aed;
+          width: 80%;
+          height: 80%;
+          top: 10%;
+          left: 10%;
+        }
+        
+        &:nth-child(3) {
+          animation-delay: 1s;
+          border-top-color: #ff6b9d;
+          width: 60%;
+          height: 60%;
+          top: 20%;
+          left: 20%;
+        }
+      }
+    }
+    
+    .loading-text {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    canvas {
+      opacity: 0.6;
+      filter: blur(1px);
+    }
+    
+    .loading-overlay {
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .loading-text {
+        font-size: 12px;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    canvas {
+      opacity: 0.5;
+      filter: blur(1.5px);
+    }
+    
+    .loading-overlay {
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
+      }
+      
+      .loading-text {
+        font-size: 11px;
+      }
+    }
+  }
+  
+  // Performance optimization for low-end devices
+  @media (prefers-reduced-motion: reduce) {
+    canvas {
+      opacity: 0.3;
+      filter: blur(2px);
+    }
+    
+    .loading-spinner .spinner-ring {
+      animation: none;
+      border-top-color: #4a9eff;
+    }
+  }
+  
+  .fallback-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -2;
+    opacity: 0.8;
+    
+    // Add floating particles effect with CSS
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(74, 158, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);
+      animation: floatingParticles 20s ease-in-out infinite;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 60% 70%, rgba(6, 255, 165, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 90% 60%, rgba(74, 158, 255, 0.2) 0%, transparent 50%);
+      animation: floatingParticles 25s ease-in-out infinite reverse;
+    }
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes floatingParticles {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translate(10px, -10px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translate(-5px, 15px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% { 
+    transform: translate(-15px, -5px) scale(1.05);
+    opacity: 0.5;
+  }
+}

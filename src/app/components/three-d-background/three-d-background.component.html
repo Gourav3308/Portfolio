@@ -1,0 +1,16 @@
+<div #threeDContainer class="three-d-background">
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+    </div>
+    <p class="loading-text">Initializing 3D Environment...</p>
+  </div>
+  <!-- Fallback gradient background -->
+  <div class="fallback-background"></div>
+  <!-- Debug info -->
+  <div class="debug-info" style="position: absolute; top: 10px; right: 10px; color: white; font-size: 12px; z-index: 1000;">
+    Background: {{ isLoading ? 'Loading...' : 'Ready' }}
+  </div>
+</div>

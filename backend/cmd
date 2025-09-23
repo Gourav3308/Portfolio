@@ -1,0 +1,99 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.gouravkumar:portfolio-backend >------------------
+[INFO] Building Gourav Kumar Portfolio Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.0:run (default-cli) > test-compile @ portfolio-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ portfolio-backend ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ portfolio-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ portfolio-backend ---
+[INFO] skip non existing resourceDirectory C:\Users\goura\OneDrive\Desktop\GouravPortfolio\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ portfolio-backend ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.0:run (default-cli) < test-compile @ portfolio-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.0:run (default-cli) @ portfolio-backend ---
+[INFO] Attaching agents: []
+=== ENVIRONMENT VARIABLES DEBUG ===
+DATABASE_URL: null
+DB_USERNAME: null
+DB_PASSWORD: [NOT SET]
+SPRING_PROFILES_ACTIVE: null
+=====================================
+=== ENVIRONMENT VARIABLES DEBUG ===
+DATABASE_URL: null
+DB_USERNAME: null
+DB_PASSWORD: [NOT SET]
+SPRING_PROFILES_ACTIVE: null
+=====================================
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2025-09-23T12:18:17.456+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] c.g.portfolio.PortfolioApplication       : Starting PortfolioApplication using Java 23.0.2 with PID 9120 (C:\Users\goura\OneDrive\Desktop\GouravPortfolio\backend\target\classes started by goura in C:\Users\goura\OneDrive\Desktop\GouravPortfolio\backend)
+2025-09-23T12:18:17.458+05:30 DEBUG 9120 --- [gourav-portfolio-backend] [  restartedMain] c.g.portfolio.PortfolioApplication       : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-23T12:18:17.459+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] c.g.portfolio.PortfolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-23T12:18:17.539+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-09-23T12:18:17.540+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-09-23T12:18:18.493+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-23T12:18:18.697+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 193 ms. Found 3 JPA repository interfaces.
+2025-09-23T12:18:19.400+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-23T12:18:19.413+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-23T12:18:19.414+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-09-23T12:18:19.472+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-09-23T12:18:19.473+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1932 ms
+2025-09-23T12:18:19.659+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-23T12:18:19.753+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-09-23T12:18:19.801+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-23T12:18:20.094+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-23T12:18:20.124+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-23T12:18:20.328+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42be27df
+2025-09-23T12:18:20.331+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-23T12:18:20.397+05:30  WARN 9120 --- [gourav-portfolio-backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-23T12:18:20.398+05:30  WARN 9120 --- [gourav-portfolio-backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-09-23T12:18:21.445+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-23T12:18:21.531+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-23T12:18:21.802+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-23T12:18:22.482+05:30  WARN 9120 --- [gourav-portfolio-backend] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-23T12:18:22.807+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2ee44c63, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4cc44bc, org.springframework.security.web.context.SecurityContextHolderFilter@3cb1a595, org.springframework.security.web.header.HeaderWriterFilter@2a120d01, org.springframework.web.filter.CorsFilter@4e5b5ec7, org.springframework.security.web.authentication.logout.LogoutFilter@226f3d62, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@797a6f0c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@113a51ed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b4bdc19, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47f37f5c, org.springframework.security.web.access.ExceptionTranslationFilter@58655008, org.springframework.security.web.access.intercept.AuthorizationFilter@5a00dee5]
+2025-09-23T12:18:23.079+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-09-23T12:18:23.120+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-09-23T12:18:23.128+05:30  INFO 9120 --- [gourav-portfolio-backend] [  restartedMain] c.g.portfolio.PortfolioApplication       : Started PortfolioApplication in 6.319 seconds (process running for 7.063)
+2025-09-23T12:18:23.201+05:30 DEBUG 9120 --- [gourav-portfolio-backend] [  restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        projects p1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        projects p1_0
+Projects already exist, skipping seeding.
+2025-09-23T12:18:23.217+05:30 DEBUG 9120 --- [gourav-portfolio-backend] [  restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        skills s1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        skills s1_0
+Skills already exist, skipping seeding.

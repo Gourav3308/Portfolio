@@ -157,4 +157,61 @@ export class SkillsSectionComponent implements OnInit, AfterViewInit {
     return this.skills.filter(skill => skill.category === this.activeCategory);
   }
 
+  getSkillIconClass(skillName: string): string {
+    switch (skillName.toLowerCase()) {
+      case 'java':
+        return 'java-icon';
+      case 'javascript':
+        return 'javascript-icon';
+      case 'html':
+        return 'html-icon';
+      case 'css':
+        return 'css-icon';
+      case 'sql':
+        return 'sql-icon';
+      case 'spring boot':
+        return 'springboot-icon';
+      case 'spring mvc':
+        return 'springmvc-icon';
+      case 'spring data jpa':
+        return 'springdatajpa-icon';
+      case 'hibernate':
+        return 'hibernate-icon';
+      case 'angular':
+        return 'angular-icon';
+      case 'react.js':
+        return 'react-icon';
+      case 'thymeleaf':
+        return 'thymeleaf-icon';
+      case 'mysql':
+        return 'mysql-icon';
+      case 'postgresql':
+        return 'postgresql-icon';
+      case 'git':
+        return 'git-icon';
+      case 'github':
+        return 'github-icon';
+      case 'eclipse':
+        return 'eclipse-icon';
+      case 'intellij idea':
+        return 'intellij-icon';
+      case 'visual studio code':
+        return 'vscode-icon';
+      case 'postman':
+        return 'postman-icon';
+      case 'oop':
+        return 'oop-icon';
+      case 'restful apis':
+        return 'restful-icon';
+      case 'mvc architecture':
+        return 'mvc-icon';
+      case 'orm':
+        return 'orm-icon';
+      case 'microservices':
+        return 'microservices-icon';
+      default:
+        return '';
+    }
+  }
+
 }

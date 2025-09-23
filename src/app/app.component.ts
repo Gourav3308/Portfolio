@@ -11,9 +11,9 @@ import { EducationSectionComponent } from './components/education-section/educat
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
-import { ParticleBackgroundComponent } from './components/particle-background/particle-background.component';
 import { ProjectsSectionComponent } from './components/projects-section/projects-section.component';
 import { SkillsSectionComponent } from './components/skills-section/skills-section.component';
+import { ThreeDBackgroundComponent } from './components/three-d-background/three-d-background.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
     EducationSectionComponent,
     ContactSectionComponent,
     FooterComponent,
-    ParticleBackgroundComponent
+    ThreeDBackgroundComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

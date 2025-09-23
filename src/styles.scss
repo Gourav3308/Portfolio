@@ -16,6 +16,12 @@ body {
   color: #ffffff;
   overflow-x: hidden;
   line-height: 1.6;
+  position: relative;
+  
+  // Smooth transitions for all elements
+  * {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 }
 
 /* Custom Scrollbar */
@@ -41,6 +47,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section {
@@ -48,6 +58,8 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
+  justify-content: center;
 }
 
 .text-gradient {
