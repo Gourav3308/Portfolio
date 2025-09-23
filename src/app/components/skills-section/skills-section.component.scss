@@ -59,6 +59,8 @@
   display: block;
   width: 100%;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .floating-tech-sidebar {
@@ -292,6 +294,10 @@
 }
 
 .skills-grid {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  
   .category-filter {
     display: flex;
     gap: 15px;
@@ -424,7 +430,12 @@
 }
 
 .skill-details {
-  margin-top: 40px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 400px;
+  z-index: 10;
 
   .skill-detail-card {
     background: rgba(255, 255, 255, 0.05);
@@ -538,6 +549,13 @@
     grid-template-columns: 1fr;
   }
 
+  .skill-details {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
   .skill-details .skill-detail-card .detail-content .skill-stats {
     flex-direction: column;
     gap: 20px;
