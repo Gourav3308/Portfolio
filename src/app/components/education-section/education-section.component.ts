@@ -48,7 +48,7 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
     {
       title: 'Java Development Intern',
       issuer: 'TechnoHacks',
-      date: '2024',
+      date: 'Aug 2025',
       description: 'Worked on REST APIs & web applications using Spring Boot. Gained hands-on experience in enterprise application development.',
       link: 'https://drive.google.com/file/d/1JlCg6wlKuGBJ8elNEXQ6ANadTUJcEndk/view?usp=sharing',
       icon: 'fab fa-java'
@@ -56,7 +56,7 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
     {
       title: 'Problem-Solving & Programming',
       issuer: 'GeeksforGeeks, CUTM',
-      date: '2024',
+      date: 'Aug 2025',
       description: '16-week intensive training program covering data structures, algorithms, and competitive programming.',
       link: 'https://drive.google.com/file/d/1Dmwu71Xamb-mLlqhL-8HMKR8TnrQmVgx/view?usp=sharing',
       icon: 'fas fa-code'
@@ -64,10 +64,18 @@ export class EducationSectionComponent implements OnInit, AfterViewInit {
     {
       title: 'Quantum Computing Workshop',
       issuer: 'DRDO',
-      date: '2024',
+      date: 'July 2024',
       description: 'Advanced workshop on quantum computing principles and applications conducted by Defence Research and Development Organisation.',
       link: 'https://drive.google.com/file/d/1Ad1HxPkr66XDuuR7R48VGmSb1iTvi7yo/view?usp=sharing',
       icon: 'fas fa-atom'
+    },
+    {
+      title: 'Java Full Stack Development',
+      issuer: 'Udemy',
+      date: '2024',
+      description: 'Comprehensive course covering Java, Spring Boot, React, MySQL, and modern web development practices for building full-stack applications.',
+      link: '#',
+      icon: 'fas fa-laptop-code'
     }
   ];
 
