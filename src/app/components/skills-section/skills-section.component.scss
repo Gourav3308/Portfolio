@@ -3,9 +3,10 @@
   background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 30, 0.9) 100%);
   position: relative;
   overflow: hidden;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &::before {
     content: '';
@@ -23,6 +24,8 @@
 .section-header {
   text-align: center;
   margin-bottom: 80px;
+  width: 100%;
+  max-width: 1000px;
 
   .section-title {
     font-size: 3.5rem;
@@ -56,17 +59,20 @@
 }
 
 .skills-content {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   position: relative;
   max-width: 1000px;
-  margin: 0 auto;
 }
 
 .skills-grid {
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   .category-filter {
     display: flex;
