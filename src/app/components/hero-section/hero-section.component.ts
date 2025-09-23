@@ -143,7 +143,7 @@ export class HeroSectionComponent implements OnInit, AfterViewInit {
 
   downloadResume() {
     // Google Drive file ID from the provided link
-    const fileId = '1CiwZ7zv_FFgnNoZLkSsRlfZpM_LZHjXf';
+    const fileId = '1WgRY0RnNG9qmKjlRUK215NgzT1KA73Q5';
     
     // Create direct download link from Google Drive
     const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
