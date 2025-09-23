@@ -83,10 +83,10 @@ export class ProjectsSectionComponent implements OnInit {
         technologies: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs', 'JWT'],
         image: 'healthbridge.jpg',
         githubUrl: 'https://github.com/Gourav3308/HealthBridge',
-        liveUrl: 'https://healthbridge-demo.vercel.app',
+        liveUrl: 'https://healthbridge-frontend-jj1l.onrender.com',
         featured: true,
         category: 'Full Stack',
-        date: 'Aug 2025'
+        date: 'Apr 2025'
       }
     ];
     console.log('Fallback projects array created with', this.projects.length, 'projects');
