@@ -11,38 +11,6 @@
     </div>
 
     <div class="skills-content">
-      <!-- Floating Tech Sidebar -->
-      <div class="floating-tech-sidebar" #techSidebar>
-        <div class="tech-category" *ngFor="let category of techCategories">
-          <div class="category-header">
-            <span class="category-title">{{ category.name }}</span>
-            <div class="category-line"></div>
-          </div>
-          <div class="tech-icons">
-            <div 
-              *ngFor="let tech of category.technologies; let i = index"
-              class="tech-icon"
-              [style.animation-delay]="i * 0.1 + 's'"
-              [style.--tech-color]="tech.color"
-              [title]="tech.name"
-              (click)="selectTech(tech)"
-              (mouseenter)="highlightTech(tech)"
-              (mouseleave)="unhighlightTech()">
-              <i [class]="tech.icon"></i>
-              <div class="tech-glow"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3D Skill Sphere -->
-      <div class="skill-sphere-container" #skillSphere>
-        <div class="skill-sphere">
-          <!-- Skill points will be dynamically added here -->
-        </div>
-        <div class="sphere-glow"></div>
-      </div>
-
       <!-- Skills Grid -->
       <div class="skills-grid" #skillsContainer>
         <!-- Category Filter -->
