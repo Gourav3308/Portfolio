@@ -430,12 +430,11 @@
 }
 
 .skill-details {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  width: 400px;
-  z-index: 10;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 
   .skill-detail-card {
     background: rgba(255, 255, 255, 0.05);
@@ -549,12 +548,6 @@
     grid-template-columns: 1fr;
   }
 
-  .skill-details {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 30px;
-  }
   
   .skill-details .skill-detail-card .detail-content .skill-stats {
     flex-direction: column;

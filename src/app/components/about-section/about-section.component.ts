@@ -22,7 +22,6 @@ interface TimelineItem {
 })
 export class AboutSectionComponent implements OnInit, AfterViewInit {
   @ViewChild('aboutContainer', { static: true }) aboutContainer!: ElementRef;
-  @ViewChild('profile3D', { static: true }) profile3D!: ElementRef;
 
   timelineItems: TimelineItem[] = [
     {
@@ -63,12 +62,10 @@ export class AboutSectionComponent implements OnInit, AfterViewInit {
   ];
 
   ngOnInit() {
-    this.createFloatingElements();
   }
 
   ngAfterViewInit() {
     this.initializeAnimations();
-    this.create3DProfile();
   }
 
   private initializeAnimations() {
@@ -137,50 +134,7 @@ export class AboutSectionComponent implements OnInit, AfterViewInit {
     );
   }
 
-  private create3DProfile() {
-    const container = this.profile3D.nativeElement;
-    
-    // Create 3D profile elements
-    const profileElements = [
-      { element: 'div', class: 'profile-cube', content: '💻' },
-      { element: 'div', class: 'profile-sphere', content: '⚡' },
-      { element: 'div', class: 'profile-pyramid', content: '🚀' }
-    ];
 
-    profileElements.forEach((item, index) => {
-      const el = document.createElement(item.element);
-      el.className = item.class;
-      el.textContent = item.content;
-      el.style.setProperty('--delay', `${index * 0.5}s`);
-      container.appendChild(el);
-    });
-
-    // Animate 3D elements
-    gsap.to('.profile-cube', {
-      rotationY: 360,
-      duration: 4,
-      ease: 'none',
-      repeat: -1
-    });
-
-    gsap.to('.profile-sphere', {
-      rotationX: 360,
-      duration: 6,
-      ease: 'none',
-      repeat: -1
-    });
-
-    gsap.to('.profile-pyramid', {
-      rotationZ: 360,
-      duration: 8,
-      ease: 'none',
-      repeat: -1
-    });
-  }
-
-  private createFloatingElements() {
-    // This will be handled by CSS animations
-  }
 
   scrollToContact() {
     const contactSection = document.getElementById('contact');
