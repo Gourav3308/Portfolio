@@ -17,8 +17,20 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String fromEmail;
     
+    @Value("${spring.mail.host}")
+    private String mailHost;
+    
+    @Value("${spring.mail.port}")
+    private int mailPort;
+    
     public void sendContactEmail(ContactMessage contactMessage) {
         try {
+            System.out.println("=== EMAIL SERVICE DEBUG ===");
+            System.out.println("Mail Host: " + mailHost);
+            System.out.println("Mail Port: " + mailPort);
+            System.out.println("From Email: " + fromEmail);
+            System.out.println("JavaMailSender: " + (mailSender != null ? "Available" : "NULL"));
+            
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
             message.setTo(fromEmail); // Send to your email
@@ -40,11 +52,14 @@ public class EmailService {
             );
             
             message.setText(emailBody);
-            mailSender.send(message);
             
-            System.out.println("Email sent successfully to: " + fromEmail);
+            System.out.println("Attempting to send email...");
+            mailSender.send(message);
+            System.out.println("✅ Email sent successfully to: " + fromEmail);
+            System.out.println("=== EMAIL SEND COMPLETE ===");
         } catch (Exception e) {
-            System.err.println("Error sending email: " + e.getMessage());
+            System.err.println("❌ Error sending email: " + e.getMessage());
+            System.err.println("Error class: " + e.getClass().getSimpleName());
             e.printStackTrace();
             // Don't throw exception - let the caller handle it
         }
@@ -52,6 +67,9 @@ public class EmailService {
     
     public void sendAutoReply(ContactMessage contactMessage) {
         try {
+            System.out.println("=== AUTO-REPLY DEBUG ===");
+            System.out.println("Sending auto-reply to: " + contactMessage.getEmail());
+            
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
             message.setTo(contactMessage.getEmail()); // Reply to sender
@@ -77,9 +95,12 @@ public class EmailService {
             message.setText(replyBody);
             mailSender.send(message);
             
-            System.out.println("Auto-reply sent successfully to: " + contactMessage.getEmail());
+            System.out.println("✅ Auto-reply sent successfully to: " + contactMessage.getEmail());
+            System.out.println("=== AUTO-REPLY COMPLETE ===");
         } catch (Exception e) {
-            System.err.println("Error sending auto-reply: " + e.getMessage());
+            System.err.println("❌ Error sending auto-reply: " + e.getMessage());
+            System.err.println("Error class: " + e.getClass().getSimpleName());
+            e.printStackTrace();
             // Don't throw exception for auto-reply failure
         }
     }
