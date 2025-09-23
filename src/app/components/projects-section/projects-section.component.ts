@@ -57,7 +57,7 @@ export class ProjectsSectionComponent implements OnInit {
         technologies: ['Java', 'Spring Boot', 'Spring Security', 'MySQL', 'Thymeleaf', 'Bootstrap'],
         image: 'smartbank.jpg',
         githubUrl: 'https://github.com/Gourav3308/SmartBank',
-        liveUrl: 'https://smartbank-demo.vercel.app',
+        liveUrl: '',
         featured: true,
         category: 'Full Stack',
         date: 'Aug 2024'
@@ -70,7 +70,7 @@ export class ProjectsSectionComponent implements OnInit {
         technologies: ['Java', 'Spring Boot', 'Razorpay', 'Google OAuth2', 'MySQL', 'REST APIs'],
         image: 'payment-gateway.jpg',
         githubUrl: 'https://github.com/Gourav3308/Payment-Gateway',
-        liveUrl: 'https://payment-gateway-demo.vercel.app',
+        liveUrl: '',
         featured: true,
         category: 'Backend',
         date: 'Jan 2025'
