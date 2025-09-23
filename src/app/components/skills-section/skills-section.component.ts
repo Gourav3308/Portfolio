@@ -112,7 +112,7 @@ export class SkillsSectionComponent implements OnInit, AfterViewInit {
         duration: 1.5,
         ease: 'elastic.out(1, 0.3)',
         scrollTrigger: {
-          trigger: this.skillSphere.nativeElement,
+          trigger: this.skillsContainer.nativeElement,
           start: 'top 80%',
           toggleActions: 'play none none reverse'
         }
